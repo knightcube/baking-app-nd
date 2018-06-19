@@ -25,6 +25,8 @@ dependencies {
     implementation 'com.android.support:design:27.1.1'
     //Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

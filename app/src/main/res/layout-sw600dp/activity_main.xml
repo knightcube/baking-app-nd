@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <!--Master list fragment here -->
 
-    <!--Detail list fragments here (frame layout containers)-->
 
+
+
+
+    <!--Detail list fragments here (frame layout containers)-->
+    <fragment
+        android:id="@+id/tab_recipe_container"
+        class="com.example.knightcube.bakingapp.ui.main.fragment.RecipesFragment"
+        android:layout_width="200dp"
+        android:layout_height="match_parent" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorAccent"/>
+
+    <fragment
+        android:id="@+id/tab_ingredients_container"
+        class="com.example.knightcube.bakingapp.ui.detail.fragment.IngredientsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

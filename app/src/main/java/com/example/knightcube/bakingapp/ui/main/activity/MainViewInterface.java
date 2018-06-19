@@ -1,4 +1,4 @@
-package com.example.knightcube.bakingapp.ui.main;
+package com.example.knightcube.bakingapp.ui.main.activity;
 
 import com.example.knightcube.bakingapp.models.Recipe;
 

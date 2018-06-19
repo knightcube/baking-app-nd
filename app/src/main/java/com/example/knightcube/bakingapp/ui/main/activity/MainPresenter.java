@@ -1,4 +1,4 @@
-package com.example.knightcube.bakingapp.ui.main;
+package com.example.knightcube.bakingapp.ui.main.activity;
 
 
 import android.util.Log;
@@ -11,10 +11,8 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.knightcube.bakingapp.ui.detail;
+package com.example.knightcube.bakingapp.ui.detail.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +10,6 @@ import android.widget.Toast;
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.IngredientsAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
-
-import java.nio.file.attribute.FileAttribute;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

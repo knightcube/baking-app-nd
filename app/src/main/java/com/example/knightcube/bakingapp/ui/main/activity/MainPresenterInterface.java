@@ -1,4 +1,4 @@
-package com.example.knightcube.bakingapp.ui.main;
+package com.example.knightcube.bakingapp.ui.main.activity;
 
 /**
  * Created by Rajat Kumar Gupta on 19/06/2018.
