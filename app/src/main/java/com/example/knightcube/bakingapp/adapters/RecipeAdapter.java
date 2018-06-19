@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.knightcube.bakingapp.R;
@@ -21,11 +20,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     private List<Recipe> recipeList;
     private Context context;
-    public RecipeAdapter(List<Recipe> recipeList, Context context){
+    private final ListItemClickListener listItemClickListener;
+    public RecipeAdapter(List<Recipe> recipeList, Context context, ListItemClickListener listItemClickListener){
         this.recipeList = recipeList;
         this.context = context;
+        this.listItemClickListener = listItemClickListener;
     }
-
 
     @NonNull
     @Override
@@ -45,11 +45,23 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipeList.size();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder{
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView recipeNameTxt;
         public RecipeViewHolder(View itemView) {
             super(itemView);
             recipeNameTxt = itemView.findViewById(R.id.recipe_name_txt);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            int clickedPostion = getAdapterPosition();
+            listItemClickListener.onListItemClick(clickedPostion,recipeList);
         }
     }
+
+    public interface ListItemClickListener{
+        void onListItemClick(int clickedItemIndex,List<Recipe> recipeList);
+    }
+
 }

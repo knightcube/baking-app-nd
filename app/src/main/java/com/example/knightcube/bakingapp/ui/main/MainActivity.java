@@ -1,5 +1,6 @@
 package com.example.knightcube.bakingapp.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,13 +14,14 @@ import android.widget.Toast;
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.RecipeAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
+import com.example.knightcube.bakingapp.ui.detail.RecipeDetailsActivity;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainViewInterface{
+public class MainActivity extends AppCompatActivity implements MainViewInterface,RecipeAdapter.ListItemClickListener{
 
     @BindView(R.id.recipe_recycler_view)
     RecyclerView recyclerView;
@@ -40,28 +42,6 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         getRecipeList();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.sa
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private void setupMVP() {
         mainPresenter = new MainPresenter(this);
     }
@@ -73,11 +53,12 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     private void getRecipeList() {
         mainPresenter.getRecipes();
     }
+
     @Override
     public void displayRecipes(List<Recipe> recipe) {
         if(recipe!=null){
             Log.i(TAG, "displayRecipes: "+recipe.get(1).getName());
-            recipeAdapter = new RecipeAdapter(recipe,MainActivity.this);
+            recipeAdapter = new RecipeAdapter(recipe,MainActivity.this, MainActivity.this);
             setupViews();
             recyclerView.setAdapter(recipeAdapter);
         }else{
@@ -94,4 +75,34 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     public void showToast(String str) {
         Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex, List<Recipe> recipeList) {
+        Intent intent = new Intent(MainActivity.this,RecipeDetailsActivity.class);
+        intent.putExtra("recipe",recipeList.get(clickedItemIndex));
+        startActivity(intent);
+    }
+    //
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.sa
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+
 }
