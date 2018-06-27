@@ -1,5 +1,6 @@
 package com.example.knightcube.bakingapp.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -39,6 +40,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return new RecipeViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull final RecipeViewHolder holder, int position) {
 
@@ -49,6 +51,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 holder.expandableLayout.toggle();
             }
         });
+        holder.recipeServingCountTxt.setText(context.getString(R.string.servings_label)+recipeList.get(position).getServings());
+        holder.recipeStepCountTxt.setText("Number of steps: "+recipeList.get(position).getSteps().size());
+        holder.recipeIngredientCountTxt.setText("Number of ingredients: "+recipeList.get(position).getIngredients().size());
         Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.recipeImageView);
     }
 
@@ -61,11 +66,17 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         private TextView recipeNameTxt;
         private ImageView recipeImageView;
         private ExpandableLayout expandableLayout;
+        private TextView recipeIngredientCountTxt;
+        private TextView recipeStepCountTxt;
+        private TextView recipeServingCountTxt;
         public RecipeViewHolder(View itemView) {
             super(itemView);
             recipeNameTxt = itemView.findViewById(R.id.recipe_name_txt);
             recipeImageView = itemView.findViewById(R.id.recipe_img);
             expandableLayout = itemView.findViewById(R.id.expandableLayout);
+            recipeIngredientCountTxt = itemView.findViewById(R.id.recipe_ingredient_count_txt);
+            recipeStepCountTxt = itemView.findViewById(R.id.recipe_step_count_txt);
+            recipeServingCountTxt = itemView.findViewById(R.id.recipe_servings_count_txt);
             itemView.setOnClickListener(this);
         }
 
