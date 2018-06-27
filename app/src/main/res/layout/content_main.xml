@@ -19,7 +19,8 @@
         android:id="@+id/recipe_app_banner_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/app_title"/>
 
     <android.support.v7.widget.RecyclerView
         android:layout_below="@+id/recipe_app_banner_image"

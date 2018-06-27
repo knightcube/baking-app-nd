@@ -26,6 +26,7 @@ dependencies {
     implementation 'com.android.support:design:27.1.0'
     //Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
+    implementation 'com.android.support:support-v4:27.1.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
@@ -42,6 +43,8 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
     //ExpandableLayout
     implementation 'com.github.aakira:expandable-layout:1.6.0@aar'
+    //DiscreteScrollView
+    implementation 'com.yarolegovich:discrete-scrollview:1.4.7'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

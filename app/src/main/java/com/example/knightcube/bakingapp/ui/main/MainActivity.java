@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(MainActivity.this);
-        Picasso.get().load("https://p82.cooltext.com/Rendered/Cool%20Text%20-%20Baking%20App%20291237167299492.png").into(recipeAppBannerImage);
         setupMVP();
         getRecipeList();
     }

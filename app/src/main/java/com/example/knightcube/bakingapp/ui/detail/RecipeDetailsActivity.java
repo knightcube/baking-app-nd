@@ -3,6 +3,7 @@ package com.example.knightcube.bakingapp.ui.detail;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,9 +13,8 @@ import android.widget.Toast;
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.IngredientsAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
+import com.example.knightcube.bakingapp.ui.detail.fragments.RecipeStepsFragment;
 import com.google.gson.Gson;
-
-import java.nio.file.attribute.FileAttribute;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,14 +40,25 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
         ButterKnife.bind(this);
         setupMVP();
         getIngredients();
+        createRecipeStepsFragment();
+    }
+
+    //Create RecipeStepsfragment instance in this activity(host)
+    private void createRecipeStepsFragment() {
+        RecipeStepsFragment recipeStepsFragment = new RecipeStepsFragment();
+        //Using FragmentManager and transaction to add Fragment into this activity's screen
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(R.id.steps_container, recipeStepsFragment)
+                .commit();
     }
 
     @OnClick(R.id.recipe_favourite_btn)
-    public void addToFavourites(){
-        SharedPreferences.Editor editor = getSharedPreferences("FAVOURITES",MODE_PRIVATE).edit();
+    public void addToFavourites() {
+        SharedPreferences.Editor editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit();
         Gson gson = new Gson();
         String json = gson.toJson(getSelectedRecipe());
-        editor.putString("favourite_recipe",json);
+        editor.putString("favourite_recipe", json);
         editor.commit();
     }
 
@@ -55,7 +66,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
         recipeDetailsPresenter.getRecipeIngredients();
     }
 
-    private Recipe getSelectedRecipe() {
+    public Recipe getSelectedRecipe() {
         Bundle data = getIntent().getExtras();
         Recipe recipe = (Recipe) data.getParcelable("recipe");
         return recipe;
@@ -71,7 +82,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
             ingredientsAdapter = new IngredientsAdapter(recipe.getIngredients(), this);
             recipeIngredientsRV.setLayoutManager(new LinearLayoutManager(this));
             recipeIngredientsRV.setAdapter(ingredientsAdapter);
-        }else{
+        } else {
             showToast("No ingredients to display");
         }
     }
