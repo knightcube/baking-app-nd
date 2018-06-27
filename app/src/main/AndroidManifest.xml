@@ -24,7 +24,17 @@
         <activity
             android:name=".ui.detail.RecipeDetailsActivity"
             android:label="@string/title_activity_recipe_details"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <receiver android:name=".widget.RecipeIngredientsWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/recipe_ingredients_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

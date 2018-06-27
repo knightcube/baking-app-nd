@@ -2,4 +2,7 @@
     <string name="app_name">BakingApp</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_recipe_details">RecipeDetailsActivity</string>
+    <string name="appwidget_text">Baking App</string>
+    <string name="add_widget">Add widget</string>
+    <string name="recipe_image_content_description">Recipe Image</string>
 </resources>

@@ -3,18 +3,21 @@ package com.example.knightcube.bakingapp.ui.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.RecipeAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
 import com.example.knightcube.bakingapp.ui.detail.RecipeDetailsActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
     @BindView(R.id.recipe_recycler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.recipe_app_banner_image)
+    ImageView recipeAppBannerImage;
 
     RecipeAdapter recipeAdapter;
 
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(MainActivity.this);
-
+        Picasso.get().load("https://p82.cooltext.com/Rendered/Cool%20Text%20-%20Baking%20App%20291237167299492.png").into(recipeAppBannerImage);
         setupMVP();
         getRecipeList();
     }
@@ -47,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     }
 
     private void setupViews() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
     }
 
     private void getRecipeList() {

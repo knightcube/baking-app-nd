@@ -6,10 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.models.Recipe;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
 
         holder.recipeNameTxt.setText(recipeList.get(position).getName());
+        Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.recipeImageView);
     }
 
     @Override
@@ -47,9 +50,11 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView recipeNameTxt;
+        private ImageView recipeImageView;
         public RecipeViewHolder(View itemView) {
             super(itemView);
             recipeNameTxt = itemView.findViewById(R.id.recipe_name_txt);
+            recipeImageView = itemView.findViewById(R.id.recipe_img);
             itemView.setOnClickListener(this);
         }
 
