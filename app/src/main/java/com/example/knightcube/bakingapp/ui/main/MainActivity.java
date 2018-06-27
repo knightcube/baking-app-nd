@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     }
 
     private void setupViews() {
-        recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
     }
 
     private void getRecipeList() {

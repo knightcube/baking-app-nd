@@ -11,9 +11,12 @@ import android.widget.TextView;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.models.Recipe;
+import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by Rajat Kumar Gupta on 19/06/2018.
@@ -37,9 +40,15 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecipeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecipeViewHolder holder, int position) {
 
         holder.recipeNameTxt.setText(recipeList.get(position).getName());
+        holder.recipeNameTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.expandableLayout.toggle();
+            }
+        });
         Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.recipeImageView);
     }
 
@@ -51,10 +60,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView recipeNameTxt;
         private ImageView recipeImageView;
+        private ExpandableLayout expandableLayout;
         public RecipeViewHolder(View itemView) {
             super(itemView);
             recipeNameTxt = itemView.findViewById(R.id.recipe_name_txt);
             recipeImageView = itemView.findViewById(R.id.recipe_img);
+            expandableLayout = itemView.findViewById(R.id.expandableLayout);
             itemView.setOnClickListener(this);
         }
 
