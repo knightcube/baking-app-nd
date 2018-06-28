@@ -23,7 +23,7 @@
 
         <FrameLayout
             android:id="@+id/steps_container"
-            android:layout_height="200dp"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent">
         </FrameLayout>
         <android.support.v7.widget.RecyclerView

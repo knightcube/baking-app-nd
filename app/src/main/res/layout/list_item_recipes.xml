@@ -18,6 +18,7 @@
             android:layout_height="194dp"
             android:contentDescription="@string/recipe_image_content_description"
             android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
              />
 
         <TextView

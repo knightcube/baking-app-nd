@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.models.Step;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,6 +39,10 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     public void onBindViewHolder(@NonNull StepsAdapter.StepsViewHolder holder, int position) {
         Log.i("TAG", "onBindViewHolder: "+stepList.get(position).getDescription());
         holder.stepLongDescriptionTxt.setText(stepList.get(position).getDescription());
+        if(stepList.get(position).getThumbnailURL().length()!=0)
+            Picasso.get().load(stepList.get(position).getThumbnailURL()).into(holder.stepThumbnailImg);
+        else
+            holder.stepThumbnailImg.setVisibility(View.GONE);
     }
 
     @Override
@@ -47,10 +53,12 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     public class StepsViewHolder extends RecyclerView.ViewHolder{
         private TextView stepShortDescriptionTxt;
         private TextView stepLongDescriptionTxt;
+        private ImageView stepThumbnailImg;
         public StepsViewHolder(View itemView) {
             super(itemView);
 //            stepShortDescriptionTxt = itemView.findViewById(R.id.);
             stepLongDescriptionTxt = itemView.findViewById(R.id.recipe_name_txt);
+            stepThumbnailImg = itemView.findViewById(R.id.recipe_img);
 
         }
     }
