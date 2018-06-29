@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.knightcube.bakingapp"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -27,6 +27,7 @@ dependencies {
     //Butterknife
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.android.support:support-v4:27.1.1'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

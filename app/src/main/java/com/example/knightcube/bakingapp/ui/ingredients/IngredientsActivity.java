@@ -1,26 +1,27 @@
-package com.example.knightcube.bakingapp.ui.detail;
+package com.example.knightcube.bakingapp.ui.ingredients;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.IngredientsAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
-import com.example.knightcube.bakingapp.ui.detail.fragments.RecipeStepsFragment;
+import com.example.knightcube.bakingapp.ui.steps.StepDetailActivity;
 import com.google.gson.Gson;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDetailsViewInterface {
+public class IngredientsActivity extends AppCompatActivity implements IngredientsViewInterface {
 
     @BindView(R.id.recipe_ingredients_rv)
     RecyclerView recipeIngredientsRV;
@@ -28,8 +29,11 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
     @BindView(R.id.recipe_favourite_btn)
     FloatingActionButton recipeFavouriteBtn;
 
+    @BindView(R.id.ingredients_done_btn)
+    Button ingredientsDoneBtn;
+
     IngredientsAdapter ingredientsAdapter;
-    RecipeDetailsPresenter recipeDetailsPresenter;
+    IngredientsPresenter recipeDetailsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +41,10 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
         setContentView(R.layout.activity_recipe_details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
         setupMVP();
         getIngredients();
-        createRecipeStepsFragment();
-    }
-
-    //Create RecipeStepsfragment instance in this activity(host)
-    private void createRecipeStepsFragment() {
-        RecipeStepsFragment recipeStepsFragment = new RecipeStepsFragment();
-        //Using FragmentManager and transaction to add Fragment into this activity's screen
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.steps_container, recipeStepsFragment)
-                .commit();
     }
 
     @OnClick(R.id.recipe_favourite_btn)
@@ -60,6 +54,12 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
         String json = gson.toJson(getSelectedRecipe());
         editor.putString("favourite_recipe", json);
         editor.commit();
+    }
+
+    @OnClick(R.id.ingredients_done_btn)
+    public void goToSteps(){
+        Intent intent = new Intent(IngredientsActivity.this, StepDetailActivity.class);
+        startActivity(intent);
     }
 
     private void getIngredients() {
@@ -73,7 +73,7 @@ public class RecipeDetailsActivity extends AppCompatActivity implements RecipeDe
     }
 
     private void setupMVP() {
-        recipeDetailsPresenter = new RecipeDetailsPresenter(RecipeDetailsActivity.this, getSelectedRecipe());
+        recipeDetailsPresenter = new IngredientsPresenter(IngredientsActivity.this, getSelectedRecipe());
     }
 
     @Override

@@ -6,4 +6,5 @@
     <color name="colorPrimaryLight">#E1BEE7</color>
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorPrimaryText">#212121</color>
+    <color name="colorSuccess">#4CAF50</color>
 </resources>

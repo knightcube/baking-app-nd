@@ -10,14 +10,12 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.RecipeAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
-import com.example.knightcube.bakingapp.ui.detail.RecipeDetailsActivity;
-import com.squareup.picasso.Picasso;
+import com.example.knightcube.bakingapp.ui.ingredients.IngredientsActivity;
 
 import java.util.List;
 
@@ -29,10 +27,8 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     @BindView(R.id.recipe_recycler_view)
     RecyclerView recyclerView;
 
-    @BindView(R.id.recipe_app_banner_image)
-    ImageView recipeAppBannerImage;
-
     RecipeAdapter recipeAdapter;
+    private int state;
 
     private static final String TAG = "MainActivity" ;
     MainPresenter mainPresenter;
@@ -43,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(MainActivity.this);
+        state=0;
         setupMVP();
         getRecipeList();
     }
@@ -52,7 +49,11 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     }
 
     private void setupViews() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        if(state==0) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        } else{
+            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
+        }
     }
 
     private void getRecipeList() {
@@ -83,31 +84,33 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
     @Override
     public void onListItemClick(int clickedItemIndex, List<Recipe> recipeList) {
-        Intent intent = new Intent(MainActivity.this,RecipeDetailsActivity.class);
+        Intent intent = new Intent(MainActivity.this,IngredientsActivity.class);
         intent.putExtra("recipe",recipeList.get(clickedItemIndex));
         startActivity(intent);
     }
-    //
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.sa
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_github) {
+            return true;
+        }
+        else if(id==R.id.action_change_view){
+            if(state==0){
+                state=1;
+            }else{
+                state=0;
+            }
+            setupViews();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

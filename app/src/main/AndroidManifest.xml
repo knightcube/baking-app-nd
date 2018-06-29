@@ -22,8 +22,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.detail.RecipeDetailsActivity"
+            android:name=".ui.ingredients.IngredientsActivity"
             android:label="@string/title_activity_recipe_details"
+            android:parentActivityName=".ui.main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <receiver android:name=".widget.RecipeIngredientsWidget">
@@ -35,6 +36,20 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/recipe_ingredients_widget_info" />
         </receiver>
+
+        <activity
+            android:name=".ui.steps.StepListActivity"
+            android:label="@string/title_step_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".ui.steps.StepDetailActivity"
+            android:label="@string/title_step_detail"
+            android:parentActivityName=".ui.steps.StepListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.knightcube.bakingapp.ui.steps.StepListActivity" />
+        </activity>
     </application>
 
 </manifest>

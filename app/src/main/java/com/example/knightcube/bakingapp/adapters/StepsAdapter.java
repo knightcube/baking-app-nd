@@ -31,18 +31,16 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     @NonNull
     @Override
     public StepsAdapter.StepsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item_recipes,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.list_item_steps,parent,false);
         return new StepsViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull StepsAdapter.StepsViewHolder holder, int position) {
         Log.i("TAG", "onBindViewHolder: "+stepList.get(position).getDescription());
+        holder.stepShortDescriptionTxt.setText(stepList.get(position).getShortDescription());
         holder.stepLongDescriptionTxt.setText(stepList.get(position).getDescription());
-        if(stepList.get(position).getThumbnailURL().length()!=0)
-            Picasso.get().load(stepList.get(position).getThumbnailURL()).into(holder.stepThumbnailImg);
-        else
-            holder.stepThumbnailImg.setVisibility(View.GONE);
+
     }
 
     @Override
@@ -53,12 +51,11 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     public class StepsViewHolder extends RecyclerView.ViewHolder{
         private TextView stepShortDescriptionTxt;
         private TextView stepLongDescriptionTxt;
-        private ImageView stepThumbnailImg;
         public StepsViewHolder(View itemView) {
             super(itemView);
-//            stepShortDescriptionTxt = itemView.findViewById(R.id.);
-            stepLongDescriptionTxt = itemView.findViewById(R.id.recipe_name_txt);
-            stepThumbnailImg = itemView.findViewById(R.id.recipe_img);
+            stepShortDescriptionTxt = itemView.findViewById(R.id.step_short_description);
+            stepLongDescriptionTxt = itemView.findViewById(R.id.step_long_description);
+
 
         }
     }
