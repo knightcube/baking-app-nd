@@ -2,11 +2,9 @@
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/step_list"
+    android:id="@+id/step_list_rv"
     android:name="com.example.knightcube.bakingapp.ui.detail.StepListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    tools:context=".ui.steps.StepListActivity"
+    tools:context=".ui.steps.mvp.StepListActivity"
     tools:listitem="@layout/step_list_content" />

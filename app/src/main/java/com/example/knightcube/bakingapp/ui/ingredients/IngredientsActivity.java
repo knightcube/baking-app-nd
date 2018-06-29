@@ -3,6 +3,7 @@ package com.example.knightcube.bakingapp.ui.ingredients;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.IngredientsAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
-import com.example.knightcube.bakingapp.ui.steps.StepDetailActivity;
+import com.example.knightcube.bakingapp.ui.steps.mvp.StepListActivity;
 import com.google.gson.Gson;
 
 import butterknife.BindView;
@@ -58,7 +59,8 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
 
     @OnClick(R.id.ingredients_done_btn)
     public void goToSteps(){
-        Intent intent = new Intent(IngredientsActivity.this, StepDetailActivity.class);
+        Intent intent = new Intent(IngredientsActivity.this, StepListActivity.class);
+        intent.putExtra("selected_recipe",getSelectedRecipe());
         startActivity(intent);
     }
 
@@ -73,7 +75,7 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
     }
 
     private void setupMVP() {
-        recipeDetailsPresenter = new IngredientsPresenter(IngredientsActivity.this, getSelectedRecipe());
+        recipeDetailsPresenter = new IngredientsPresenter(IngredientsActivity.this,getSelectedRecipe());
     }
 
     @Override
@@ -88,11 +90,6 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
     }
 
     @Override
-    public void displayRecipeSteps() {
-
-    }
-
-    @Override
     public void displayError(String e) {
         showToast(e);
     }
@@ -101,4 +98,5 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
     public void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
+
 }

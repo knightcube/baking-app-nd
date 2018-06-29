@@ -38,17 +38,18 @@
         </receiver>
 
         <activity
-            android:name=".ui.steps.StepListActivity"
+            android:name=".ui.steps.mvp.StepListActivity"
             android:label="@string/title_step_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:parentActivityName=".ui.ingredients.IngredientsActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
         <activity
             android:name=".ui.steps.StepDetailActivity"
             android:label="@string/title_step_detail"
-            android:parentActivityName=".ui.steps.StepListActivity"
+            android:parentActivityName=".ui.steps.mvp.StepListActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.knightcube.bakingapp.ui.steps.StepListActivity" />
+
         </activity>
     </application>
 

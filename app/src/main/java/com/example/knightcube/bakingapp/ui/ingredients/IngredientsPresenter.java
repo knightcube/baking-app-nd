@@ -18,11 +18,4 @@ public class IngredientsPresenter implements IngredientsPresenterInterface {
     public void getRecipeIngredients() {
        recipeDetailsViewInterface.displayRecipesIngredients(recipe);
     }
-
-    @Override
-    public void getRecipeSteps() {
-
-    }
-
-
 }

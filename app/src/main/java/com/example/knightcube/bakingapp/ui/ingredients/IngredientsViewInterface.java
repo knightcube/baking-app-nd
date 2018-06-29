@@ -7,7 +7,6 @@ import com.example.knightcube.bakingapp.models.Recipe;
  */
 public interface IngredientsViewInterface {
     void displayRecipesIngredients(Recipe recipe);
-    void displayRecipeSteps();
     void displayError(String e);
     void showToast(String str);
 }

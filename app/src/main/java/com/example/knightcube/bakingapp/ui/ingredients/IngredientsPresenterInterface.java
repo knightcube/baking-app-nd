@@ -5,5 +5,4 @@ package com.example.knightcube.bakingapp.ui.ingredients;
  */
 public interface IngredientsPresenterInterface {
     void getRecipeIngredients();
-    void getRecipeSteps();
 }
