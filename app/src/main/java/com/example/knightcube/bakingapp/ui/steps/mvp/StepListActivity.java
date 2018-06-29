@@ -29,6 +29,7 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
 
     private boolean mTwoPane;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,9 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
         ButterKnife.bind(this);
         if (findViewById(R.id.step_detail_container) != null) {
             mTwoPane = true;
+        }
+        if(savedInstanceState!=null){
+
         }
         setupMVP();
         setupRecyclerView();
@@ -87,4 +91,9 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
         return recipe;
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
 }

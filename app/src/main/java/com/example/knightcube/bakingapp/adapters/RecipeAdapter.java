@@ -1,17 +1,22 @@
 package com.example.knightcube.bakingapp.adapters;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.models.Recipe;
+import com.example.knightcube.bakingapp.ui.ingredients.IngredientsActivity;
+import com.example.knightcube.bakingapp.ui.main.MainActivity;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.squareup.picasso.Picasso;
 
@@ -42,7 +47,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
 
     @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull final RecipeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecipeViewHolder holder, final int position) {
 
         holder.recipeNameTxt.setText(recipeList.get(position).getName());
         holder.recipeNameTxt.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +60,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.recipeStepCountTxt.setText("Number of steps: "+recipeList.get(position).getSteps().size());
         holder.recipeIngredientCountTxt.setText("Number of ingredients: "+recipeList.get(position).getIngredients().size());
         Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.recipeImageView);
+
     }
 
     @Override
@@ -87,7 +93,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         }
     }
 
-    public interface ListItemClickListener{
+    public interface ListItemClickListener {
         void onListItemClick(int clickedItemIndex,List<Recipe> recipeList);
     }
 

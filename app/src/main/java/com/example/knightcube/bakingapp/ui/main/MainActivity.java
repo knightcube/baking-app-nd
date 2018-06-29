@@ -1,6 +1,7 @@
 package com.example.knightcube.bakingapp.ui.main;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     RecyclerView recyclerView;
 
     RecipeAdapter recipeAdapter;
-    private int state;
+    private int state;//0 for linear, and 1 for grid
 
     private static final String TAG = "MainActivity" ;
     MainPresenter mainPresenter;
@@ -113,4 +114,18 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.i(TAG, "onConfigurationChanged: ");
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.i(TAG, "onConfigurationChanged: Landscape");
+           state = 1;
+           setupViews();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Log.i(TAG, "onConfigurationChanged: Portrait");
+            state = 0;
+            setupViews();
+        }
+    }
 }
