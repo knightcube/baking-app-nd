@@ -6,15 +6,21 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.example.knightcube.bakingapp.R;
+import com.example.knightcube.bakingapp.models.Step;
 import com.example.knightcube.bakingapp.ui.steps.mvp.StepListActivity;
 
+import butterknife.BindView;
+
 public class StepDetailActivity extends AppCompatActivity {
+
+    private static final String TAG = "StepDetail" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +30,13 @@ public class StepDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        Step selectedStep = getIntent().getExtras().getParcelable(StepDetailFragment.ARG_ITEM_ID);
+        Log.i(TAG, "onCreate: "+selectedStep.getDescription());
 
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
-            arguments.putString(StepDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(StepDetailFragment.ARG_ITEM_ID));
+            arguments.putParcelable(StepDetailFragment.ARG_ITEM_ID,
+                    getIntent().getExtras().getParcelable(StepDetailFragment.ARG_ITEM_ID));
             StepDetailFragment fragment = new StepDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

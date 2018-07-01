@@ -1,5 +1,6 @@
 package com.example.knightcube.bakingapp.ui.main;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -40,7 +41,11 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(MainActivity.this);
-        state=0;
+        if(isTablet(this)){
+            state = 1;
+        }else{
+            state = 0;
+        }
         setupMVP();
         getRecipeList();
     }
@@ -127,5 +132,10 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
             state = 0;
             setupViews();
         }
+    }
+    public boolean isTablet(Context context) {
+        boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
+        boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
+        return (xlarge || large);
     }
 }

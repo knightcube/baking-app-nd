@@ -25,7 +25,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        String[] texts = {"If you can","SSSMMMELLLLLL!!","what the app...","is...","cooking."};
+        String[] texts = {"If you can","SMELLLLLL!!","what the app...","is..","cooking!"};
         appSubtitle.setTexts(texts); //You can use an array resource or a string array as the parameter
         new Handler().postDelayed(new Runnable() {
 

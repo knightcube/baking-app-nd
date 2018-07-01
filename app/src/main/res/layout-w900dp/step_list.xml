@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     android:baselineAligned="false"
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
@@ -24,8 +22,7 @@
         android:name="com.example.knightcube.bakingapp.ui.detail.StepListFragment"
         android:layout_width="@dimen/item_width"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+
         tools:context="com.example.knightcube.bakingapp.ui.steps.mvp.StepListActivity"
         tools:listitem="@layout/step_list_content" />
 

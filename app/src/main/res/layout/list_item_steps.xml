@@ -6,19 +6,32 @@
     android:layout_margin="2dp"
     app:cardCornerRadius="4dp"
     app:cardElevation="2dp"
-    app:cardBackgroundColor="@color/colorAccent">
+    >
 
     <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/recipe_video_thumbnail"
+            android:alpha="0.9"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background_cakes_default"/>
 
         <TextView
             android:id="@+id/step_short_description"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:minHeight="100dp"
+            android:gravity="center"
             android:text="Recipe short description"
-            android:textColor="@color/colorIcons"
+            android:textColor="@color/colorPrimaryText"
             android:textSize="18sp"
             android:layout_marginTop="4dp"
             android:paddingLeft="16dp"

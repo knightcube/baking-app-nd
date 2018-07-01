@@ -71,7 +71,7 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
 
     @Override
     public void displayError(String e) {
-
+        showToast(e);
     }
 
     @Override

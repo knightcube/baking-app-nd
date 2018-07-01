@@ -43,17 +43,15 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
             Step step = (Step) view.getTag();
             if (twoPane) {
                 Bundle arguments = new Bundle();
-                arguments.putInt(StepDetailFragment.ARG_ITEM_ID, step.getId());
+                arguments.putParcelable(StepDetailFragment.ARG_ITEM_ID, step);
                 StepDetailFragment fragment = new StepDetailFragment();
                 fragment.setArguments(arguments);
                 ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.step_detail_container, fragment)
                         .commit();
             } else {
-                Context context = view.getContext();
                 Intent intent = new Intent(context, StepDetailActivity.class);
-                intent.putExtra(StepDetailFragment.ARG_ITEM_ID,step.getId());
-
+                intent.putExtra(StepDetailFragment.ARG_ITEM_ID,step);
                 context.startActivity(intent);
             }
         }
@@ -72,7 +70,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         holder.stepShortDescriptionTxt.setText((position+1)+"."+stepList.get(position).getShortDescription());
         holder.stepLongDescriptionTxt.setText(stepList.get(position).getDescription());
         holder.itemView.setTag(stepList.get(position));
-        holder.itemView.setOnClickListener(mOnClickListener);
+        Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.stepImageView);
     }
 
     @Override
@@ -83,13 +81,14 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
     public class StepsViewHolder extends RecyclerView.ViewHolder {
         private TextView stepShortDescriptionTxt;
         private TextView stepLongDescriptionTxt;
+        private ImageView stepImageView;
 
         public StepsViewHolder(View itemView) {
             super(itemView);
             stepShortDescriptionTxt = itemView.findViewById(R.id.step_short_description);
             stepLongDescriptionTxt = itemView.findViewById(R.id.step_long_description);
-
-
+            stepImageView = itemView.findViewById(R.id.recipe_video_thumbnail);
+            itemView.setOnClickListener(mOnClickListener);
         }
     }
 }
