@@ -7,4 +7,6 @@
     <color name="colorIcons">#FFFFFF</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSuccess">#4CAF50</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

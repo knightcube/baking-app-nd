@@ -43,9 +43,7 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
         if (findViewById(R.id.step_detail_container) != null) {
             mTwoPane = true;
         }
-        if(savedInstanceState!=null){
 
-        }
         setupMVP();
         setupRecyclerView();
         getSteps();

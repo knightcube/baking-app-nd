@@ -14,12 +14,6 @@ import android.view.MenuItem;
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.ui.steps.mvp.StepListActivity;
 
-/**
- * An activity representing a single Step detail screen. This
- * activity is only used on narrow width devices. On tablet-size devices,
- * item details are presented side-by-side with a list of items
- * in a {@link StepListActivity}.
- */
 public class StepDetailActivity extends AppCompatActivity {
 
     @Override

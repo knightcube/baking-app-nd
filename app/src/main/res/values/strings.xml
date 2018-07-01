@@ -13,4 +13,7 @@
     <string name="title_step_list">Steps</string>
     <string name="title_step_detail">Step Detail</string>
     <string name="action_change_view">Change View</string>
+
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="app_tagline">IF YOU CAN SMELLLLL!!!! WHAT THE APP IS COOKING </string>
 </resources>
