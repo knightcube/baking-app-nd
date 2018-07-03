@@ -67,7 +67,7 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
 
     @Override
     public void onBindViewHolder(@NonNull StepsAdapter.StepsViewHolder holder, int position) {
-        holder.stepShortDescriptionTxt.setText((position+1)+"."+stepList.get(position).getShortDescription());
+        holder.stepShortDescriptionTxt.setText(stepList.get(position).getShortDescription());
         holder.stepLongDescriptionTxt.setText(stepList.get(position).getDescription());
         holder.itemView.setTag(stepList.get(position));
         Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.stepImageView);

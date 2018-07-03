@@ -3,6 +3,7 @@ package com.example.knightcube.bakingapp.ui.main;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.adapters.RecipeAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
+import com.example.knightcube.bakingapp.ui.about.AboutActivity;
 import com.example.knightcube.bakingapp.ui.ingredients.IngredientsActivity;
 
 import java.util.List;
@@ -105,16 +107,12 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         int id = item.getItemId();
 
         if (id == R.id.action_github) {
-            return true;
+            Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/knightcube/baking-app-nd/tree/master"));
+            startActivity(myIntent);
         }
-        else if(id==R.id.action_change_view){
-            if(state==0){
-                state=1;
-            }else{
-                state=0;
-            }
-            setupViews();
-
+        else if(id==R.id.action_about_me){
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

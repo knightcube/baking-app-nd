@@ -1,32 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/colorPrimary">
+    android:gravity="center">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/ic_baking_app_launcher"/>
     <com.tomer.fadingtextview.FadingTextView
-
         android:id="@+id/fading_text_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:textColor="@color/colorIcons"
-        android:textSize="32sp"
+        android:textSize="24sp"
         app:timeout="500"
         android:textStyle="bold" />
     <Button
+        android:layout_marginTop="24dp"
         android:id="@+id/open_main_activity_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tap to continue"/>
-    <ProgressBar
-        android:indeterminate="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:padding="8dp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorIcons"
+        android:text="@string/tap_to_continue"/>
 
 </LinearLayout>
