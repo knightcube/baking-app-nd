@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.knightcube.bakingapp.R;
@@ -32,6 +33,9 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
 
     @BindView(R.id.ingredients_done_btn)
     Button ingredientsDoneBtn;
+
+    @BindView(R.id.selected_recipe)
+    TextView selectedRecipe;
 
     IngredientsAdapter ingredientsAdapter;
     IngredientsPresenter recipeDetailsPresenter;
@@ -70,7 +74,10 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
 
     public Recipe getSelectedRecipe() {
         Bundle data = getIntent().getExtras();
-        Recipe recipe = (Recipe) data.getParcelable("recipe");
+        Recipe recipe = null;
+        if (data != null) {
+            recipe = (Recipe) data.getParcelable("recipe");
+        }
         return recipe;
     }
 
@@ -97,6 +104,11 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
     @Override
     public void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displaySelectedRecipe() {
+        selectedRecipe.setText(getSelectedRecipe().getName());
     }
 
 }

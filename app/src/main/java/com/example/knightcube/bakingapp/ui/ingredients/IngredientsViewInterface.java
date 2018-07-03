@@ -9,4 +9,5 @@ public interface IngredientsViewInterface {
     void displayRecipesIngredients(Recipe recipe);
     void displayError(String e);
     void showToast(String str);
+    void displaySelectedRecipe();
 }
