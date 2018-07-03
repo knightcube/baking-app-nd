@@ -28,11 +28,12 @@
             android:layout_height="wrap_content"
             android:drawableEnd="@drawable/ic_arrow_drop_down"
             android:background="@drawable/ripple_anim"
-            android:layout_below="@id/recipe_img"
             android:layout_marginTop="4dp"
             android:paddingLeft="16dp"
             android:paddingStart="16dp"
-            android:text="Recipe"
+            android:paddingRight="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/recipe"
             android:textColor="@color/colorPrimaryText"
             android:textSize="21sp"
             android:textStyle="bold" />
@@ -54,7 +55,7 @@
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingRight="16dp"
-                android:text="Number of ingredients: 4"
+                android:text="@string/number_of_ingredients_4"
                 android:textSize="14sp" />
 
             <TextView
@@ -66,7 +67,7 @@
                 android:paddingStart="16dp"
                 android:paddingRight="16dp"
                 android:paddingEnd="16dp"
-                android:text="Number of steps: 5"
+                android:text="@string/number_of_steps_5"
                 android:textSize="14sp" />
 
         </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
@@ -78,7 +79,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingRight="16dp"
-            android:text="Number of servings: 4"
+            android:text="@string/number_of_servings_4"
             android:textSize="14sp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,16 +88,20 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/recipe_ingredients_label"
+                android:id="@+id/show_ingredients_action"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:paddingLeft="16dp"
                 android:paddingStart="16dp"
-                android:text="Ingredients"
+                android:paddingRight="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/ingredients"
                 android:textAllCaps="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
@@ -107,14 +112,17 @@
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryText"/>
             <TextView
+                android:id="@+id/cooking_card_action"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:textAlignment="center"
-                android:text="Cook"
+                android:text="@string/cook"
                 android:textAllCaps="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"

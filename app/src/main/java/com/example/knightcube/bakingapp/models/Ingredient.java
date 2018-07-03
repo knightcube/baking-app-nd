@@ -35,24 +35,12 @@ public class Ingredient implements Parcelable {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public String getMeasure() {
         return measure;
     }
 
-    public void setMeasure(String measure) {
-        this.measure = measure;
-    }
-
     public String getIngredient() {
         return ingredient;
-    }
-
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
     }
 
 
@@ -68,7 +56,7 @@ public class Ingredient implements Parcelable {
         dest.writeString(this.ingredient);
     }
 
-    protected Ingredient(Parcel in) {
+    Ingredient(Parcel in) {
         this.quantity = in.readDouble();
         this.measure = in.readString();
         this.ingredient = in.readString();

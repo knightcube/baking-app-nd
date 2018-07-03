@@ -14,7 +14,6 @@ public class StepsListPresenter implements StepsListPresenterInterface {
         this.selectedRecipe = selectedRecipe;
     }
 
-    @Override
     public void getRecipeSteps() {
         stepsListViewInterface.displayRecipeSteps(selectedRecipe);
     }

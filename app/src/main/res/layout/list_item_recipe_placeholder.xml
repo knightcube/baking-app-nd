@@ -13,121 +13,92 @@
         android:background="@drawable/ripple_anim"
         android:orientation="vertical">
 
-        <ImageView
+        <View
             android:id="@+id/recipe_img"
             android:layout_width="match_parent"
             android:layout_height="194dp"
-            android:contentDescription="@string/recipe_image_content_description"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher"
-            />
+            android:background="@color/placeholder_bg" />
 
-        <TextView
+        <View
             android:id="@+id/recipe_name_txt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/ic_arrow_drop_down"
-            android:background="@drawable/ripple_anim"
+            android:layout_height="8dp"
             android:layout_marginTop="4dp"
-            android:paddingLeft="16dp"
-            android:paddingStart="16dp"
-            android:paddingRight="16dp"
+            android:background="@color/placeholder_bg"
             android:paddingEnd="16dp"
-            android:text="@string/recipe"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="21sp"
-            android:textStyle="bold" />
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp" />
 
         <com.github.aakira.expandablelayout.ExpandableRelativeLayout
             android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/placeholder_bg"
             app:ael_duration="500"
             app:ael_expanded="false"
             app:ael_interpolator="bounce"
             app:ael_orientation="vertical">
 
-            <TextView
-                android:id="@+id/recipe_ingredient_count_txt"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="8dp"
                 android:paddingLeft="16dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingRight="16dp"
-                android:text="@string/number_of_ingredients_4"
-                android:textSize="14sp" />
+                />
 
             <TextView
-                android:id="@+id/recipe_step_count_txt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recipe_ingredient_count_txt"
                 android:paddingLeft="16dp"
                 android:paddingStart="16dp"
                 android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:text="@string/number_of_steps_5"
-                android:textSize="14sp" />
+                android:paddingEnd="16dp" />
 
         </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
-        <TextView
+
+        <View
             android:id="@+id/recipe_servings_count_txt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="16dp"
-            android:paddingStart="16dp"
+            android:layout_height="8dp"
             android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="@string/number_of_servings_4"
-            android:textSize="14sp" />
+            android:paddingStart="16dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/show_ingredients_action"
+            <View
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
+                android:layout_height="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@color/placeholder_bg"
                 android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingRight="16dp"
-                android:text="@string/ingredients"
-                android:textAlignment="center"
-                android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:paddingStart="16dp" />
 
-            <TextView
+            <View
                 android:layout_width="1dp"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimaryText"/>
-            <TextView
-                android:id="@+id/cooking_card_action"
+                android:layout_height="8dp"
+                android:background="@color/placeholder_bg" />
+
+            <View
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginStart="8dp"
-                android:textAlignment="center"
-                android:text="@string/cook"
-                android:textAllCaps="true"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_weight="1"
+                android:background="@color/placeholder_bg" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

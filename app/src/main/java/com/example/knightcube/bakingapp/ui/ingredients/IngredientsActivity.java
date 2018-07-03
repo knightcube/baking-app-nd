@@ -3,7 +3,6 @@ package com.example.knightcube.bakingapp.ui.ingredients;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,23 +27,22 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
     @BindView(R.id.recipe_ingredients_rv)
     RecyclerView recipeIngredientsRV;
 
-    @BindView(R.id.recipe_favourite_btn)
-    FloatingActionButton recipeFavouriteBtn;
-
-    @BindView(R.id.ingredients_done_btn)
-    Button ingredientsDoneBtn;
-
     @BindView(R.id.selected_recipe)
     TextView selectedRecipe;
 
-    IngredientsAdapter ingredientsAdapter;
-    IngredientsPresenter recipeDetailsPresenter;
+    @BindView(R.id.ingredients_done_btn)
+    Button startCookingBtn;
+
+    @BindView(R.id.recipe_favourite_btn)
+    FloatingActionButton addToWidgetBtn;
+
+    private IngredientsPresenter recipeDetailsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_details);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
@@ -63,26 +61,25 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
         showToast("You can now add widget in your Home Screen");
     }
 
-    @OnClick(R.id.ingredients_done_btn)
-    public void goToSteps(){
-        Intent intent = new Intent(IngredientsActivity.this, StepListActivity.class);
-        intent.putExtra("selected_recipe",getSelectedRecipe());
-        startActivity(intent);
-    }
-
     private void getIngredients() {
         recipeDetailsPresenter.getRecipeIngredients();
     }
 
-    public Recipe getSelectedRecipe() {
+    private Recipe getSelectedRecipe() {
         Bundle data = getIntent().getExtras();
         Recipe recipe = null;
         if (data != null) {
-            recipe = (Recipe) data.getParcelable("recipe");
+            recipe = data.getParcelable("recipe");
         }
         return recipe;
     }
 
+    @OnClick(R.id.ingredients_done_btn)
+    void openDetails(){
+        Intent intent = new Intent(IngredientsActivity.this, StepListActivity.class);
+        intent.putExtra("selected_recipe",getSelectedRecipe());
+        startActivity(intent);
+    }
     private void setupMVP() {
         recipeDetailsPresenter = new IngredientsPresenter(IngredientsActivity.this,getSelectedRecipe());
     }
@@ -90,7 +87,7 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
     @Override
     public void displayRecipesIngredients(Recipe recipe) {
         if (recipe.getIngredients() != null) {
-            ingredientsAdapter = new IngredientsAdapter(recipe.getIngredients(), this);
+            IngredientsAdapter ingredientsAdapter = new IngredientsAdapter(recipe.getIngredients(), this);
             recipeIngredientsRV.setLayoutManager(new LinearLayoutManager(this));
             recipeIngredientsRV.setAdapter(ingredientsAdapter);
         } else {
@@ -98,17 +95,14 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
         }
     }
 
-    @Override
     public void displayError(String e) {
         showToast(e);
     }
 
-    @Override
     public void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
     public void displaySelectedRecipe() {
 
     }

@@ -23,7 +23,6 @@ import java.util.List;
  */
 public class RecipeIngredientsWidget extends AppWidgetProvider {
 
-    private static SharedPreferences prefs;
     private RemoteViews views;
 
     @Override
@@ -66,7 +65,7 @@ public class RecipeIngredientsWidget extends AppWidgetProvider {
         StringBuilder builder = new StringBuilder();
         int pos = 1;
         for (Ingredient currentIngredients : ingredientList) {
-            builder.append(pos + "." + currentIngredients.getIngredient() + " " + currentIngredients.getQuantity() + " " + currentIngredients.getMeasure() + "\n");
+            builder.append(pos).append(".").append(currentIngredients.getIngredient()).append(" ").append(currentIngredients.getQuantity()).append(" ").append(currentIngredients.getMeasure()).append("\n");
             pos++;
         }
 
@@ -80,12 +79,11 @@ public class RecipeIngredientsWidget extends AppWidgetProvider {
 
     }
 
-    public Recipe getRecipe(Context context) {
-        prefs = context.getSharedPreferences("FAVOURITES", Context.MODE_PRIVATE);
+    private Recipe getRecipe(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences("FAVOURITES", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("favourite_recipe", "");
-        Recipe recipe = gson.fromJson(json, Recipe.class);
-        return recipe;
+        return gson.fromJson(json, Recipe.class);
     }
 }
 

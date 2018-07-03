@@ -9,11 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Rajat Kumar Gupta on 19/06/2018.
  */
 public class NetworkClient {
-    public static Retrofit retrofit;
-
-    public void NetworkClient(){
-
-    }
+    private static Retrofit retrofit;
 
     public static Retrofit getRetrofit() {
 

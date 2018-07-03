@@ -1,8 +1,6 @@
 package com.example.knightcube.bakingapp.ui.steps;
 
-import android.app.Activity;
 import android.net.Uri;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,25 +8,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.devbrackets.android.exomedia.listener.OnPreparedListener;
 import com.devbrackets.android.exomedia.ui.widget.VideoView;
 import com.example.knightcube.bakingapp.R;
-import com.example.knightcube.bakingapp.models.Recipe;
 import com.example.knightcube.bakingapp.models.Step;
-import com.example.knightcube.bakingapp.ui.steps.mvp.StepListActivity;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
-import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class StepDetailFragment extends Fragment  {
 
@@ -38,16 +27,8 @@ public class StepDetailFragment extends Fragment  {
     private PlayerView playerView;
     private TextView stepDetailTxt;
     private SimpleExoPlayer player;
-    private VideoView videoView;
 
     public StepDetailFragment() {
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.knightcube.bakingapp.R;
@@ -20,6 +21,7 @@ import com.example.knightcube.bakingapp.adapters.RecipeAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
 import com.example.knightcube.bakingapp.ui.about.AboutActivity;
 import com.example.knightcube.bakingapp.ui.ingredients.IngredientsActivity;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -31,19 +33,21 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     @BindView(R.id.recipe_recycler_view)
     RecyclerView recyclerView;
 
-    RecipeAdapter recipeAdapter;
+    @BindView(R.id.shimmer_view_container)
+    ShimmerFrameLayout shimmerFrameLayout;
+
     private int state;//0 for linear, and 1 for grid
 
     private static final String TAG = "MainActivity" ;
-    MainPresenter mainPresenter;
+    private MainPresenter mainPresenter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(MainActivity.this);
-        if(isTablet(this)){
+        if(isTablet(this)||getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
             state = 1;
         }else{
             state = 0;
@@ -72,9 +76,11 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     public void displayRecipes(List<Recipe> recipe) {
         if(recipe!=null){
             Log.i(TAG, "displayRecipes: "+recipe.get(1).getName());
-            recipeAdapter = new RecipeAdapter(recipe,MainActivity.this, MainActivity.this);
+            RecipeAdapter recipeAdapter = new RecipeAdapter(recipe, MainActivity.this, MainActivity.this);
             setupViews();
             recyclerView.setAdapter(recipeAdapter);
+            shimmerFrameLayout.stopShimmer();
+            shimmerFrameLayout.setVisibility(View.GONE);
         }else{
             Log.i(TAG, "displayRecipes: Response is null");
         }
@@ -85,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         showToast(e);
     }
 
-    @Override
     public void showToast(String str) {
         Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
     }
@@ -131,9 +136,21 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
             setupViews();
         }
     }
-    public boolean isTablet(Context context) {
+    private boolean isTablet(Context context) {
         boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
         boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);
         return (xlarge || large);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    protected void onPause() {
+        shimmerFrameLayout.stopShimmer();
+        super.onPause();
     }
 }

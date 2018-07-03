@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.TextView;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.models.Ingredient;
@@ -37,10 +36,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     public void onBindViewHolder(@NonNull IngredientsViewHolder holder, int position) {
         Ingredient currentIngredient = ingredientList.get(position);
         StringBuilder builder = new StringBuilder();
-        holder.ingredientsCheckBox.setText(builder.append((position+1) + "."
-                + currentIngredient.getIngredient() + " "
-                + currentIngredient.getQuantity() + " " 
-                + currentIngredient.getMeasure())
+        holder.ingredientsCheckBox.setText(builder.append(position + 1).append(".").append(currentIngredient.getIngredient()).append(" ").append(currentIngredient.getQuantity()).append(" ").append(currentIngredient.getMeasure())
         );
     }
 
@@ -51,7 +47,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     public class IngredientsViewHolder extends RecyclerView.ViewHolder {
         private CheckBox ingredientsCheckBox;
-        public IngredientsViewHolder(View itemView) {
+        IngredientsViewHolder(View itemView) {
             super(itemView);
             ingredientsCheckBox = itemView.findViewById(R.id.ingredient_checkbox);
         }

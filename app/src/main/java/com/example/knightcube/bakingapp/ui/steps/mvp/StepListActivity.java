@@ -1,18 +1,14 @@
 package com.example.knightcube.bakingapp.ui.steps.mvp;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.knightcube.bakingapp.R;
 
-import com.example.knightcube.bakingapp.adapters.IngredientsAdapter;
 import com.example.knightcube.bakingapp.adapters.StepsAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
 
@@ -24,8 +20,7 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
     @BindView(R.id.step_list_rv)
     RecyclerView recipeStepsRV;
 
-    StepsListPresenter stepsListPresenter;
-    StepsAdapter stepsAdapter;
+    private StepsListPresenter stepsListPresenter;
 
     private boolean mTwoPane;
 
@@ -35,7 +30,7 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle(getTitle());
@@ -61,7 +56,7 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
     @Override
     public void displayRecipeSteps(Recipe recipe) {
         if (recipe.getIngredients() != null) {
-            stepsAdapter = new StepsAdapter(recipe.getSteps(), this, mTwoPane);
+            StepsAdapter stepsAdapter = new StepsAdapter(recipe.getSteps(), this, mTwoPane);
             recipeStepsRV.setLayoutManager(new LinearLayoutManager(this));
             recipeStepsRV.setAdapter(stepsAdapter);
         } else {
@@ -69,24 +64,21 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
         }
     }
 
-    @Override
     public void displayError(String e) {
         showToast(e);
     }
 
-    @Override
     public void showToast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
-    public void getSteps() {
+    private void getSteps() {
         stepsListPresenter.getRecipeSteps();
     }
 
-    public Recipe getSelectedRecipe() {
+    private Recipe getSelectedRecipe() {
         Bundle data = getIntent().getExtras();
-        Recipe recipe = (Recipe) data.getParcelable("selected_recipe");
-        return recipe;
+        return (Recipe) data.getParcelable("selected_recipe");
     }
 
     @Override

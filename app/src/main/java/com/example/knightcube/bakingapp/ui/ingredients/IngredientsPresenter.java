@@ -14,7 +14,6 @@ public class IngredientsPresenter implements IngredientsPresenterInterface {
         this.recipe = selectedRecipe;
     }
 
-    @Override
     public void getRecipeIngredients() {
        recipeDetailsViewInterface.displayRecipesIngredients(recipe);
     }

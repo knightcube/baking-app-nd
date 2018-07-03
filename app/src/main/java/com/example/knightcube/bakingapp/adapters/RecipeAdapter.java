@@ -1,7 +1,6 @@
 package com.example.knightcube.bakingapp.adapters;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -9,20 +8,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.knightcube.bakingapp.R;
 import com.example.knightcube.bakingapp.models.Recipe;
 import com.example.knightcube.bakingapp.ui.ingredients.IngredientsActivity;
-import com.example.knightcube.bakingapp.ui.main.MainActivity;
+import com.example.knightcube.bakingapp.ui.steps.mvp.StepListActivity;
 import com.github.aakira.expandablelayout.ExpandableLayout;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * Created by Rajat Kumar Gupta on 19/06/2018.
@@ -60,6 +56,22 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.recipeStepCountTxt.setText("Number of steps: "+recipeList.get(position).getSteps().size());
         holder.recipeIngredientCountTxt.setText("Number of ingredients: "+recipeList.get(position).getIngredients().size());
         Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.recipeImageView);
+        holder.cookingCardAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, StepListActivity.class);
+                intent.putExtra("selected_recipe",recipeList.get(position));
+                context.startActivity(intent);
+            }
+        });
+        holder.showIngredientsAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,IngredientsActivity.class);
+                intent.putExtra("recipe",recipeList.get(position));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -75,7 +87,9 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         private TextView recipeIngredientCountTxt;
         private TextView recipeStepCountTxt;
         private TextView recipeServingCountTxt;
-        public RecipeViewHolder(View itemView) {
+        private TextView cookingCardAction;
+        private TextView showIngredientsAction;
+        RecipeViewHolder(View itemView) {
             super(itemView);
             recipeNameTxt = itemView.findViewById(R.id.recipe_name_txt);
             recipeImageView = itemView.findViewById(R.id.recipe_img);
@@ -83,6 +97,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
             recipeIngredientCountTxt = itemView.findViewById(R.id.recipe_ingredient_count_txt);
             recipeStepCountTxt = itemView.findViewById(R.id.recipe_step_count_txt);
             recipeServingCountTxt = itemView.findViewById(R.id.recipe_servings_count_txt);
+            cookingCardAction = itemView.findViewById(R.id.cooking_card_action);
+            showIngredientsAction = itemView.findViewById(R.id.show_ingredients_action);
             itemView.setOnClickListener(this);
         }
 

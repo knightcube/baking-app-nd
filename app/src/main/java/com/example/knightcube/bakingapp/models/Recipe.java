@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 
 /**
  * Created by Rajat Kumar Gupta on 19/06/2018.
@@ -51,52 +50,20 @@ public class Recipe implements Parcelable {
         this.image = image;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(List<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
     public List<Step> getSteps() {
         return steps;
     }
 
-    public void setSteps(List<Step> steps) {
-        this.steps = steps;
-    }
-
     public int getServings() {
         return servings;
-    }
-
-    public void setServings(Integer servings) {
-        this.servings = servings;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
 
@@ -118,9 +85,9 @@ public class Recipe implements Parcelable {
     protected Recipe(Parcel in) {
         this.id = in.readInt();
         this.name = in.readString();
-        this.ingredients = new ArrayList<Ingredient>();
+        this.ingredients = new ArrayList<>();
         in.readList(this.ingredients, Ingredient.class.getClassLoader());
-        this.steps = new ArrayList<Step>();
+        this.steps = new ArrayList<>();
         in.readList(this.steps, Step.class.getClassLoader());
         this.servings = in.readInt();
         this.image = in.readString();

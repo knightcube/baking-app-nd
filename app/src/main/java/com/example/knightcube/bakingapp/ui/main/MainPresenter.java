@@ -11,10 +11,8 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -28,24 +26,18 @@ public class MainPresenter implements MainPresenterInterface {
         this.mainViewInterface = mainViewInterface;
     }
 
-    @Override
     public void getRecipes() {
         getObservable().subscribe(getObserver());
     }
 
-    @Override
-    public void unregisterSubscription() {
-        //How to unregister subscription to avoid memory leak?
-    }
-
-    public Observable<List<Recipe>> getObservable(){
+    private Observable<List<Recipe>> getObservable(){
         return NetworkClient.getRetrofit().create(NetworkInterface.class)
                 .getRecipes()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Observer<List<Recipe>> getObserver(){
+    private Observer<List<Recipe>> getObserver(){
         return new Observer<List<Recipe>>() {
             @Override
             public void onSubscribe(Disposable d) {

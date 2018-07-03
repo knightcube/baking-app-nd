@@ -1,11 +1,8 @@
 package com.example.knightcube.bakingapp.ui.about;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.knightcube.bakingapp.R;
@@ -24,7 +21,7 @@ public class AboutActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
@@ -38,6 +35,7 @@ public class AboutActivity extends AppCompatActivity {
                 .setAppName(R.string.app_name)
                 .addGitHubLink("https://github.com/knightcube")
                 .addLinkedInLink("https://www.linkedin.com/in/rajatkumargupta2209/")
+                .addEmailLink("rajatcube@gmail.com")
                 .addTwitterLink("knightcube")
                 .addShareAction(R.string.app_name)
                 .addGooglePlayStoreLink("7302200831125595425")
