@@ -48,6 +48,7 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ButterKnife.bind(this);
+        selectedRecipe.setText(getSelectedRecipe().getName());
         setupMVP();
         getIngredients();
     }
@@ -58,6 +59,7 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
         Gson gson = new Gson();
         String json = gson.toJson(getSelectedRecipe());
         editor.putString("favourite_recipe", json);
+
         editor.commit();
     }
 
@@ -108,7 +110,7 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
 
     @Override
     public void displaySelectedRecipe() {
-        selectedRecipe.setText(getSelectedRecipe().getName());
+
     }
 
 }

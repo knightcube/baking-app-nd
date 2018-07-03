@@ -20,6 +20,7 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.anything;
@@ -37,14 +38,18 @@ public class MainActivityBasicTest {
 
     @Test
     public void clickCard_OpensIngredients(){
-        // Uses {@link Espresso#onData(org.hamcrest.Matcher)} to get a reference to a specific
-        // gridview item and clicks it.
-//        onView(withId(R.id.selected_recipe)).check(matches(withText("Brownies")));
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        onView(withId(R.id.recipe_recycler_view)).check(matches(isDisplayed()));
         onView(withId(R.id.recipe_recycler_view))
                 .perform(
-                        RecyclerViewActions.actionOnItemAtPosition(0, click())
+                        RecyclerViewActions.actionOnItemAtPosition(1, click())
                 );
-       // Checks that the OrderActivity opens with the correct tea name displayed
-//        onView(withId(R.id.selected_recipe)).check(matches(withText("Brownies")));
+//         Checks that the OrderActivity opens with the correct tea name displayed
+        onView(withId(R.id.selected_recipe)).check(matches(withText("Brownies")));
     }
 }
