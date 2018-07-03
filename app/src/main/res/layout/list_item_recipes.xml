@@ -97,7 +97,6 @@
                 android:paddingLeft="16dp"
                 android:paddingStart="16dp"
                 android:text="Ingredients"
-                android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"

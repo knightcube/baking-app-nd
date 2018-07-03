@@ -2,9 +2,9 @@
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:initialKeyguardLayout="@layout/recipe_ingredients_widget"
     android:initialLayout="@layout/recipe_ingredients_widget"
-    android:minHeight="180dp"
+    android:minHeight="200dp"
     android:minWidth="250dp"
-    android:previewImage="@drawable/example_appwidget_preview"
+    android:previewImage="@drawable/background_cakes"
     android:resizeMode="horizontal|vertical"
     android:updatePeriodMillis="180000"
     android:widgetCategory="home_screen">

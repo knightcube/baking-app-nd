@@ -59,8 +59,8 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
         Gson gson = new Gson();
         String json = gson.toJson(getSelectedRecipe());
         editor.putString("favourite_recipe", json);
-
         editor.commit();
+        showToast("You can now add widget in your Home Screen");
     }
 
     @OnClick(R.id.ingredients_done_btn)

@@ -35,7 +35,13 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull IngredientsViewHolder holder, int position) {
-        holder.ingredientsCheckBox.setText(ingredientList.get(position).getIngredient());
+        Ingredient currentIngredient = ingredientList.get(position);
+        StringBuilder builder = new StringBuilder();
+        holder.ingredientsCheckBox.setText(builder.append((position+1) + "."
+                + currentIngredient.getIngredient() + " "
+                + currentIngredient.getQuantity() + " " 
+                + currentIngredient.getMeasure())
+        );
     }
 
     @Override

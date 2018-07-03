@@ -1,19 +1,54 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLight"
-    android:padding="@dimen/widget_margin"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:id="@+id/widget_ingredients_container">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/appwidget_text"
-        android:layout_width="wrap_content"
+        android:id="@+id/recipe_selected_wgt"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textColor="@color/colorAccent"
-        android:textSize="16sp" />
+        android:textSize="24sp"
+        android:paddingLeft="4dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:background="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textColor="@color/colorIcons"
+        android:text="Recipe"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingLeft="4dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:paddingRight="4dp"
+        android:textColor="@color/colorIcons"
+        android:background="@color/colorPrimary"
+        android:text="Got all ingredients?"/>
+    <TextView
+        android:id="@+id/ingredients_text_wgt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingredient"
+        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingRight="8dp"
+        android:lineSpacingExtra="4dp"
+        android:textSize="16sp"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorIcons"/>
 
+    <Button
+        android:id="@+id/start_cooking_btn_wgt"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorIcons"
+        android:text="Got it!"/>
 </LinearLayout>
