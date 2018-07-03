@@ -22,7 +22,9 @@
             android:layout_marginBottom="4dp"
             android:paddingLeft="8dp"
             android:paddingStart="8dp"
-            android:text="SELECTED RECIPE"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/selected_recipe"
             android:textStyle="bold" />
 
         <TextView
@@ -31,7 +33,9 @@
             android:layout_marginBottom="4dp"
             android:paddingLeft="8dp"
             android:paddingStart="8dp"
-            android:text="Got all the ingredients?"
+            android:paddingEnd="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/got_all_the_ingredients"
             android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView
@@ -48,14 +52,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
-            android:text="Start cooking"
+            android:text="@string/start_cooking"
             android:textColor="@color/colorIcons" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="P.S - You can still view the steps for cooking if you don't have all the ingredients "
+            android:text="@string/p_s_you_can_still_view_the_steps_for_cooking_if_you_don_t_have_all_the_ingredients"
             android:textStyle="bold" />
     </LinearLayout>
 </ScrollView>

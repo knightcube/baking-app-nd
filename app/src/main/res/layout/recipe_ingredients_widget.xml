@@ -17,7 +17,7 @@
         android:background="@color/colorPrimary"
         android:textStyle="bold"
         android:textColor="@color/colorIcons"
-        android:text="Recipe"/>
+        android:text="@string/recipe"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,12 +29,12 @@
         android:paddingRight="4dp"
         android:textColor="@color/colorIcons"
         android:background="@color/colorPrimary"
-        android:text="Got all ingredients?"/>
+        android:text="@string/got_all_ingredients"/>
     <TextView
         android:id="@+id/ingredients_text_wgt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ingredient"
+        android:text="@string/ingredient"
         android:paddingLeft="8dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp"
@@ -50,5 +50,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorIcons"
-        android:text="Got it!"/>
+        android:text="@string/got_it"/>
 </LinearLayout>

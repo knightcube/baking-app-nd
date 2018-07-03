@@ -21,4 +21,13 @@
     <string name="number_of_steps_5">Number of steps: 5</string>
     <string name="number_of_ingredients_4">Number of ingredients: 4</string>
     <string name="recipe">Recipe</string>
+    <string name="logo">Logo</string>
+    <string name="selected_recipe">SELECTED RECIPE</string>
+    <string name="got_all_the_ingredients">Got all the ingredients?</string>
+    <string name="start_cooking">Start cooking</string>
+    <string name="p_s_you_can_still_view_the_steps_for_cooking_if_you_don_t_have_all_the_ingredients">P.S - You can still view the steps for cooking if you don\'t have all the ingredients</string>
+    <string name="ingredient_1">Ingredient 1</string>
+    <string name="ingredient">Ingredient</string>
+    <string name="got_all_ingredients">Got all ingredients?</string>
+    <string name="got_it">Got it!</string>
 </resources>
