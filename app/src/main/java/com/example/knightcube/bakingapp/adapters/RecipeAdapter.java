@@ -28,7 +28,8 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     private List<Recipe> recipeList;
     private Context context;
     private final ListItemClickListener listItemClickListener;
-    public RecipeAdapter(List<Recipe> recipeList, Context context, ListItemClickListener listItemClickListener){
+
+    public RecipeAdapter(List<Recipe> recipeList, Context context, ListItemClickListener listItemClickListener) {
         this.recipeList = recipeList;
         this.context = context;
         this.listItemClickListener = listItemClickListener;
@@ -37,7 +38,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
     @NonNull
     @Override
     public RecipeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item_recipes,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.list_item_recipes, parent, false);
         return new RecipeViewHolder(v);
     }
 
@@ -52,23 +53,31 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
                 holder.expandableLayout.toggle();
             }
         });
-        holder.recipeServingCountTxt.setText(context.getString(R.string.servings_label)+recipeList.get(position).getServings());
-        holder.recipeStepCountTxt.setText("Number of steps: "+recipeList.get(position).getSteps().size());
-        holder.recipeIngredientCountTxt.setText("Number of ingredients: "+recipeList.get(position).getIngredients().size());
-        Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.recipeImageView);
+        holder.recipeServingCountTxt.setText(context.getString(R.string.servings_label) + recipeList.get(position).getServings());
+        holder.recipeStepCountTxt.setText("Number of steps: " + recipeList.get(position).getSteps().size());
+        holder.recipeIngredientCountTxt.setText("Number of ingredients: " + recipeList.get(position).getIngredients().size());
+//        if (recipeList.get(position).getImage().trim().length() == 0) {
+
+//        } else {
+        if(!recipeList.get(position).getImage().trim().equals(""))
+            Picasso.get().load(recipeList.get(position).getImage()).placeholder(R.drawable.default_cake_bg).into(holder.recipeImageView);
+        else{
+            Picasso.get().load(R.drawable.default_cake_bg).into(holder.recipeImageView);
+        }
+//        }
         holder.cookingCardAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, StepListActivity.class);
-                intent.putExtra("selected_recipe",recipeList.get(position));
+                intent.putExtra("selected_recipe", recipeList.get(position));
                 context.startActivity(intent);
             }
         });
         holder.showIngredientsAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,IngredientsActivity.class);
-                intent.putExtra("recipe",recipeList.get(position));
+                Intent intent = new Intent(context, IngredientsActivity.class);
+                intent.putExtra("recipe", recipeList.get(position));
                 context.startActivity(intent);
             }
         });
@@ -80,7 +89,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         return recipeList.size();
     }
 
-    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class RecipeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView recipeNameTxt;
         private ImageView recipeImageView;
         private ExpandableLayout expandableLayout;
@@ -89,6 +98,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         private TextView recipeServingCountTxt;
         private TextView cookingCardAction;
         private TextView showIngredientsAction;
+
         RecipeViewHolder(View itemView) {
             super(itemView);
             recipeNameTxt = itemView.findViewById(R.id.recipe_name_txt);
@@ -105,12 +115,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         @Override
         public void onClick(View view) {
             int clickedPostion = getAdapterPosition();
-            listItemClickListener.onListItemClick(clickedPostion,recipeList);
+            listItemClickListener.onListItemClick(clickedPostion, recipeList);
         }
     }
 
     public interface ListItemClickListener {
-        void onListItemClick(int clickedItemIndex,List<Recipe> recipeList);
+        void onListItemClick(int clickedItemIndex, List<Recipe> recipeList);
     }
 
 }

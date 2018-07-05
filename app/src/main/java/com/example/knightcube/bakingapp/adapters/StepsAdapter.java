@@ -44,18 +44,17 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
                 arguments.putParcelable(StepDetailFragment.ARG_ITEM_ID, step);
                 StepDetailFragment fragment = new StepDetailFragment();
                 fragment.setArguments(arguments);
-                ((AppCompatActivity)context).getSupportFragmentManager().beginTransaction()
+                ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction()
                         .replace(R.id.step_detail_container, fragment)
                         .commit();
             } else {
                 Intent intent = new Intent(context, StepDetailActivity.class);
-                intent.putExtra(StepDetailFragment.ARG_ITEM_ID,step);
+                intent.putExtra(StepDetailFragment.ARG_ITEM_ID, step);
                 context.startActivity(intent);
             }
         }
     };
 
-    //
     @NonNull
     @Override
     public StepsAdapter.StepsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -68,7 +67,18 @@ public class StepsAdapter extends RecyclerView.Adapter<StepsAdapter.StepsViewHol
         holder.stepShortDescriptionTxt.setText(stepList.get(position).getShortDescription());
         holder.stepLongDescriptionTxt.setText(stepList.get(position).getDescription());
         holder.itemView.setTag(stepList.get(position));
-        Picasso.get().load("https://best-wallpaper.net/wallpaper/2560x1600/1604/Colorful-cream-cakes-pastries-sweet-food_2560x1600.jpg").into(holder.stepImageView);
+        if (!stepList.get(position).getThumbnailURL().trim().equals("")) {
+            Picasso.get().load(stepList.get(position)
+                    .getThumbnailURL())
+                    .placeholder(R.drawable.default_cake_bg)
+                    .error(R.drawable.default_cake_bg)
+                    .into(holder.stepImageView);
+        } else{
+            Picasso.get()
+                    .load(R.drawable.default_cake_bg)
+                    .into(holder.stepImageView);
+        }
+
     }
 
     @Override

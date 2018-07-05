@@ -20,9 +20,6 @@ public class StepDetailActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Step selectedStep = getIntent().getExtras().getParcelable(StepDetailFragment.ARG_ITEM_ID);
-        Log.i(TAG, "onCreate: "+selectedStep.getDescription());
-
         if (savedInstanceState == null) {
             Bundle arguments = new Bundle();
             arguments.putParcelable(StepDetailFragment.ARG_ITEM_ID,

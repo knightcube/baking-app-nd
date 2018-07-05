@@ -75,13 +75,14 @@ public class IngredientsActivity extends AppCompatActivity implements Ingredient
     }
 
     @OnClick(R.id.ingredients_done_btn)
-    void openDetails(){
+    void openDetails() {
         Intent intent = new Intent(IngredientsActivity.this, StepListActivity.class);
-        intent.putExtra("selected_recipe",getSelectedRecipe());
+        intent.putExtra("selected_recipe", getSelectedRecipe());
         startActivity(intent);
     }
+
     private void setupMVP() {
-        recipeDetailsPresenter = new IngredientsPresenter(IngredientsActivity.this,getSelectedRecipe());
+        recipeDetailsPresenter = new IngredientsPresenter(IngredientsActivity.this, getSelectedRecipe());
     }
 
     @Override

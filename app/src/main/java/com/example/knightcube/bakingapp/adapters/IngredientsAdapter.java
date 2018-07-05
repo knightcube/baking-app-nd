@@ -20,7 +20,8 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     private List<Ingredient> ingredientList;
     private Context context;
-    public IngredientsAdapter(List<Ingredient> ingredientList,Context context){
+
+    public IngredientsAdapter(List<Ingredient> ingredientList, Context context) {
         this.ingredientList = ingredientList;
         this.context = context;
     }
@@ -28,7 +29,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
     @NonNull
     @Override
     public IngredientsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.list_item_ingredients,parent,false);
+        View v = LayoutInflater.from(context).inflate(R.layout.list_item_ingredients, parent, false);
         return new IngredientsViewHolder(v);
     }
 
@@ -47,6 +48,7 @@ public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.
 
     public class IngredientsViewHolder extends RecyclerView.ViewHolder {
         private CheckBox ingredientsCheckBox;
+
         IngredientsViewHolder(View itemView) {
             super(itemView);
             ingredientsCheckBox = itemView.findViewById(R.id.ingredient_checkbox);

@@ -34,7 +34,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        String[] texts = {"If you can SMELLLLLL!!","what the app...","is..","cooking!"};
+        String[] texts = {"If you can smellll!!","what the app...","is..","cooking!"};
         appSubtitle.setTexts(texts);
         if(!ConnectionUtils.isNetworkConnected(this)) {
             launchBtn.setEnabled(false);

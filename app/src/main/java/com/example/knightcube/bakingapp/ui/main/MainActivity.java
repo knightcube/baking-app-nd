@@ -28,7 +28,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainViewInterface,RecipeAdapter.ListItemClickListener{
+public class MainActivity extends AppCompatActivity implements MainViewInterface, RecipeAdapter.ListItemClickListener {
 
     @BindView(R.id.recipe_recycler_view)
     RecyclerView recyclerView;
@@ -38,8 +38,9 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
     private int state;//0 for linear, and 1 for grid
 
-    private static final String TAG = "MainActivity" ;
+    private static final String TAG = "MainActivity";
     private MainPresenter mainPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +48,9 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ButterKnife.bind(MainActivity.this);
-        if(isTablet(this)||getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+        if (isTablet(this) || getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             state = 1;
-        }else{
+        } else {
             state = 0;
         }
         setupMVP();
@@ -61,10 +62,10 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     }
 
     private void setupViews() {
-        if(state==0) {
+        if (state == 0) {
             recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-        } else{
-            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this,2));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(MainActivity.this, 2));
         }
     }
 
@@ -74,14 +75,13 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
 
     @Override
     public void displayRecipes(List<Recipe> recipe) {
-        if(recipe!=null){
-            Log.i(TAG, "displayRecipes: "+recipe.get(1).getName());
+        if (recipe != null) {
             RecipeAdapter recipeAdapter = new RecipeAdapter(recipe, MainActivity.this, MainActivity.this);
             setupViews();
             recyclerView.setAdapter(recipeAdapter);
             shimmerFrameLayout.stopShimmer();
             shimmerFrameLayout.setVisibility(View.GONE);
-        }else{
+        } else {
             Log.i(TAG, "displayRecipes: Response is null");
         }
     }
@@ -92,15 +92,16 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     }
 
     public void showToast(String str) {
-        Toast.makeText(MainActivity.this,str,Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, str, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onListItemClick(int clickedItemIndex, List<Recipe> recipeList) {
-        Intent intent = new Intent(MainActivity.this,IngredientsActivity.class);
-        intent.putExtra("recipe",recipeList.get(clickedItemIndex));
+        Intent intent = new Intent(MainActivity.this, IngredientsActivity.class);
+        intent.putExtra("recipe", recipeList.get(clickedItemIndex));
         startActivity(intent);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -114,8 +115,7 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
         if (id == R.id.action_github) {
             Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/knightcube/baking-app-nd/tree/master"));
             startActivity(myIntent);
-        }
-        else if(id==R.id.action_about_me){
+        } else if (id == R.id.action_about_me) {
             Intent intent = new Intent(MainActivity.this, AboutActivity.class);
             startActivity(intent);
         }
@@ -125,17 +125,15 @@ public class MainActivity extends AppCompatActivity implements MainViewInterface
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Log.i(TAG, "onConfigurationChanged: ");
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Log.i(TAG, "onConfigurationChanged: Landscape");
-           state = 1;
-           setupViews();
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Log.i(TAG, "onConfigurationChanged: Portrait");
+            state = 1;
+            setupViews();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             state = 0;
             setupViews();
         }
     }
+
     private boolean isTablet(Context context) {
         boolean xlarge = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == 4);
         boolean large = ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE);

@@ -29,6 +29,7 @@ public class Recipe implements Parcelable {
     @SerializedName("servings")
     @Expose
     private int servings;
+
     @SerializedName("image")
     @Expose
     private String image;
@@ -66,6 +67,9 @@ public class Recipe implements Parcelable {
         return servings;
     }
 
+    public String getImage() {
+        return image;
+    }
 
     @Override
     public int describeContents() {

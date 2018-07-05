@@ -77,6 +77,10 @@ public class Step implements Parcelable {
         this.thumbnailURL = in.readString();
     }
 
+    public String getThumbnailURL() {
+        return thumbnailURL;
+    }
+
     public static final Parcelable.Creator<Step> CREATOR = new Parcelable.Creator<Step>() {
         @Override
         public Step createFromParcel(Parcel source) {
