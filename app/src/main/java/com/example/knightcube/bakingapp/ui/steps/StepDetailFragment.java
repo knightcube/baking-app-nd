@@ -1,9 +1,12 @@
 package com.example.knightcube.bakingapp.ui.steps;
 
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import com.google.android.exoplayer2.util.Util;
 public class StepDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
+    private static final String TAG = "StepDetail";
 
     private Step step;
     private PlayerView playerView;
@@ -38,19 +42,14 @@ public class StepDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.step_detail, container, false);
         stepDetailTxt = rootView.findViewById(R.id.step_detail);
         stepDetailTxt.setText("Step Instructions here");
+        playerView = rootView.findViewById(R.id.player_view);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             step = getArguments().getParcelable(ARG_ITEM_ID);
             stepDetailTxt.setText(step.getDescription());
         }
-        player = ExoPlayerFactory.newSimpleInstance(getContext(), new DefaultTrackSelector());
-        playerView = rootView.findViewById(R.id.player_view);
-        return rootView;
-    }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+
         if (step.getVideoURL().length() > 0) {
             playerView.setVisibility(View.VISIBLE);
             player = ExoPlayerFactory.newSimpleInstance(getContext(), new DefaultTrackSelector());
@@ -64,12 +63,38 @@ public class StepDetailFragment extends Fragment {
             stepDetailTxt.append("Video tutorial for this step will be uploaded soon. Check again after you are done with the cooking and the eating part as well :) .");
         }
 
+        if (savedInstanceState != null) {
+            player.seekTo(savedInstanceState.getLong("current_position"));
+        }
+        return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong("current_position", player.getCurrentPosition());
     }
 
     @Override
     public void onStop() {
         super.onStop();
+        Log.i(TAG, "onStop:called ");
         playerView.setPlayer(null);
-        player.release();
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i(TAG, "onDestroy:called ");
+        playerView.setPlayer(null);
+        if(player!=null)
+            player.release();
+    }
+
 }

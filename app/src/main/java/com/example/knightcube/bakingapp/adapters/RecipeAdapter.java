@@ -50,21 +50,18 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.RecipeView
         holder.recipeNameTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                holder.recipeStepCountTxt.setText("Number of steps: " + recipeList.get(position).getSteps().size());
+                holder.recipeIngredientCountTxt.setText("Number of ingredients: " + recipeList.get(position).getIngredients().size());
                 holder.expandableLayout.toggle();
             }
         });
         holder.recipeServingCountTxt.setText(context.getString(R.string.servings_label) + recipeList.get(position).getServings());
-        holder.recipeStepCountTxt.setText("Number of steps: " + recipeList.get(position).getSteps().size());
-        holder.recipeIngredientCountTxt.setText("Number of ingredients: " + recipeList.get(position).getIngredients().size());
-//        if (recipeList.get(position).getImage().trim().length() == 0) {
 
-//        } else {
         if(!recipeList.get(position).getImage().trim().equals(""))
             Picasso.get().load(recipeList.get(position).getImage()).placeholder(R.drawable.default_cake_bg).into(holder.recipeImageView);
         else{
             Picasso.get().load(R.drawable.default_cake_bg).into(holder.recipeImageView);
         }
-//        }
         holder.cookingCardAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

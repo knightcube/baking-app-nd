@@ -41,10 +41,9 @@
         <com.github.aakira.expandablelayout.ExpandableRelativeLayout
             android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             app:ael_duration="500"
-            app:ael_expanded="false"
-            app:ael_interpolator="bounce"
+            app:ael_interpolator="accelerateDecelerate"
             app:ael_orientation="vertical">
 
             <TextView
