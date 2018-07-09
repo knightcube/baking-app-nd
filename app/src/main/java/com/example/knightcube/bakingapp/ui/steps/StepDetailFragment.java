@@ -58,13 +58,15 @@ public class StepDetailFragment extends Fragment {
             ExtractorMediaSource mediaSource = new ExtractorMediaSource.Factory(dataSourceFactory).createMediaSource(Uri.parse(step.getVideoURL()));
             player.prepare(mediaSource);
             player.setPlayWhenReady(true);
+
         } else {
             playerView.setVisibility(View.GONE);
             stepDetailTxt.append("Video tutorial for this step will be uploaded soon. Check again after you are done with the cooking and the eating part as well :) .");
         }
 
-        if (savedInstanceState != null) {
+        if (savedInstanceState != null && player != null) {
             player.seekTo(savedInstanceState.getLong("current_position"));
+            player.setPlayWhenReady(savedInstanceState.getBoolean("play_state"));
         }
         return rootView;
     }
@@ -78,7 +80,10 @@ public class StepDetailFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putLong("current_position", player.getCurrentPosition());
+        if (player != null) {
+            outState.putLong("current_position", player.getCurrentPosition());
+            outState.putBoolean("play_state", player.getPlayWhenReady());
+        }
     }
 
     @Override
@@ -86,6 +91,8 @@ public class StepDetailFragment extends Fragment {
         super.onStop();
         Log.i(TAG, "onStop:called ");
         playerView.setPlayer(null);
+        if (player != null)
+            player.release();
     }
 
     @Override
@@ -93,8 +100,7 @@ public class StepDetailFragment extends Fragment {
         super.onDestroy();
         Log.i(TAG, "onDestroy:called ");
         playerView.setPlayer(null);
-        if(player!=null)
-            player.release();
+
     }
 
 }

@@ -11,6 +11,8 @@ import com.example.knightcube.bakingapp.R;
 
 import com.example.knightcube.bakingapp.adapters.StepsAdapter;
 import com.example.knightcube.bakingapp.models.Recipe;
+import com.example.knightcube.bakingapp.models.Step;
+import com.example.knightcube.bakingapp.ui.steps.StepDetailFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +39,15 @@ public class StepListActivity extends AppCompatActivity implements StepsListView
         ButterKnife.bind(this);
         if (findViewById(R.id.step_detail_container) != null) {
             mTwoPane = true;
+            //Show default fragment in tablet
+            Bundle arguments = new Bundle();
+            Step step = getSelectedRecipe().getSteps().get(0);
+            arguments.putParcelable(StepDetailFragment.ARG_ITEM_ID, step);
+            StepDetailFragment fragment = new StepDetailFragment();
+            fragment.setArguments(arguments);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.step_detail_container, fragment)
+                    .commit();
         }
 
         setupMVP();

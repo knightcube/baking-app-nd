@@ -32,6 +32,8 @@ public class StepDetailActivity extends AppCompatActivity {
         }
     }
 
+
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();

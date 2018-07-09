@@ -40,7 +40,6 @@ public class MainActivityBasicTest {
                 .perform(
                         RecyclerViewActions.actionOnItemAtPosition(1, click())
                 );
-//         Checks that the OrderActivity opens with the correct tea name displayed
         onView(withId(R.id.selected_recipe)).check(matches(withText("Brownies")));
     }
 }
