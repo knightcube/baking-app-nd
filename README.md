@@ -1,4 +1,4 @@
-# baking-app-nd
+# Baking App
 ![GIF](https://github.com/knightcube/baking-app-nd/blob/master/screenshots/ezgif.com-video-to-gif.gif)
 
 # Key Features
